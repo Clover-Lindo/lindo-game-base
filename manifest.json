@@ -1,0 +1,14 @@
+"files": {
+  "fixes.js": {
+    "filename": "https://raw.githubusercontent.com/Clover-Lindo/lindo-game-base/master/fixes.js",
+    "version": "1.0.0"
+  },
+  "index.html": {
+    "filename": "https://raw.githubusercontent.com/Clover-Lindo/lindo-game-base/master/index.html",
+    "version": "1.0.0"
+  },
+  "regex.json": {
+    "filename": "https://raw.githubusercontent.com/Clover-Lindo/lindo-game-base/master/regex.json",
+    "version": "1.0.0"
+  }
+}
