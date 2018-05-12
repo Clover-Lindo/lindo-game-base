@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <script>
+
+        // Touch fix
+
+        window.ontouchstart = function(e) {};
+
+
+        // Init
+
+        function getUrlParams(param, url) {
+            var vars = {};
+            if (typeof url === 'undefined') url = window.location.href;
+            url.replace(/[?&]+([^=&#]+)=?([^&#]*)?/gi,
+                function(m, key, value) {
+                    vars[key] = value !== undefined ? value : '';
+                }
+            );
+            if (param) {
+                return vars[param] ? vars[param] : null;
+            }
+            return vars;
+        }
+
+        window.buildVersion = window.top.buildVersion;
+        window.appVersion = window.top.appVersion;
+        window.appInfo = {
+          version: window.top.appVersion
+        };
+
+        window.indexedDB = {};
+        window.IDBDatabase = {};
+        window.IDBTransaction = {};
+        window.IDBCursor = {};
+        window.IDBKeyRange = {};
+
+        window.cordova = {
+            plugins: {
+                isemulator: {
+                    assess: function(fct) {
+                        fct(false);
+                    }
+                },
+                Keyboard: {
+                    close: function() {},
+                    disableScroll: function() {},
+                    show: function() {},
+                    hideKeyboardAccessoryBar: function() {}
+                },
+                notification: {
+                    local: false
+                },
+                pushNotification: {
+                    onDeviceReady: function() {},
+                    setUserId: function() {},
+                    registerDevice: function() {}
+                }
+            }
+        };
+        // window.cordova.plugins.isemulator.assess(
+
+        var overrideUserAgent = function() {
+            var userAgent = "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Crosswalk/11.40.277.7 Mobile Safari/537.36";
+            var navig = {
+                appVersion: userAgent,
+                platform: "Linux armv7l",
+                userAgent: userAgent
+            };
+
+            var setProp = function(name, value) {
+                var getProp = function() {
+                  return navig[name];
+                };
+                if (Object.defineProperty) {
+                  Object.defineProperty(navigator, name, {
+                    get: getProp
+                  });
+                } else if (Object.prototype.__defineGetter__) {
+                  navigator.__defineGetter__(name, getProp);
+                }
+            };
+
+            for (var i in navig) {
+                setProp(i, navig[i]);
+            }
+        };
+
+        window.initDofus = function(cb, override) {
+            if (override) overrideUserAgent();
+            var head = document.getElementsByTagName('head')[0];
+
+            var scriptScript = document.createElement('script');
+            scriptScript.addEventListener('load', function() {
+                var fixesScript = document.createElement('script');
+                fixesScript.src = 'fixes.js';
+                head.appendChild(fixesScript);
+                cb && cb();
+            });
+            scriptScript.src = 'script.js';
+            head.appendChild(scriptScript);
+        };
+        
+    </script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles-native.css" />
+    <style>
+    body,html{
+        background: black;
+    }
+
+    /* Turn on custom 8px wide scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px; /* 1px wider than Lion. */
+        /* This is more usable for users trying to click it. */
+        background-color: rgba(0,0,0,0);
+        -webkit-border-radius: 100px;
+    }
+    /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+    ::-webkit-scrollbar:hover {
+        background-color: rgba(0, 0, 0, 0.09);
+    }
+
+    /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+    ::-webkit-scrollbar-thumb:vertical {
+        /* This is the EXACT color of Mac OS scrollbars.
+        Yes, I pulled out digital color meter */
+        background: rgba(0,0,0,0.5);
+        -webkit-border-radius: 100px;
+        background-clip: padding-box;
+        border: 2px solid rgba(0, 0, 0, 0);
+        min-height: 10px; /*Prevent it from getting too small */
+    }
+    ::-webkit-scrollbar-thumb:vertical:active {
+        background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+        -webkit-border-radius: 100px;
+    }
+    </style>
+</head>
+<body>
+</body>
+</html>
+
+<!-- Dependencies -->
+<script src="node_modules/keymaster/keymaster.js"></script>
+
+<!-- Game -->
+<script>
+  window._ = {
+      appVersion: window.appVersion,
+      buildVersion: window.buildVersion,
+      client: "android"
+  };
+
+  if (!getUrlParams('delayed')) initDofus(null, true);
+</script>
