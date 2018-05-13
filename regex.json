@@ -10,21 +10,17 @@
                "null"
           ],
           [
-               "(overrideConsole.=.function\\(\\) {)([^])*(},._.logUncaughtExceptions)",
-               "$1$3"
+               "(\\w{1,2}\\.overrideConsole\\s?=\\s?function\\(\\)\\s?{)",
+               "!1&&$1"
           ],
           [
-               "(logUncaughtExceptions.=.function\\(.*\\).{)([^])*(},.*\\.exports.*=.*_\n},.*function\\(e,.*t,.*i\\))",
-               "$1$3"
+               "(\\w{1,2}\\.logUncaughtExceptions\\s?=\\s?function\\(.*\\)\\s?{)",
+               "!1&&$1"
           ],
           [
-               "this\\.send\\(.*, d\\(\"login\"\\)\\)",
-               "var _scm_ = d(\"login\"); for (var i in window._){ _scm_[i] = window._[i]}; this.send(\"connecting\", _scm_);"
-          ],
-          [
-               "(this\\.send\\(.*,.d\\({\n.*\n.*\n.*\n.*\n.*)(}\\),.*\\(\"serverDisconnecting\")",
-               "var _scm_ = d({address: a,port: r,id: e}); for (var i in window._) {_scm_[i] = window._[i]};this.send(\"connecting\", _scm_);$2"
-          ],
+               "(language:\\s?window\\.Config\\s?\\?[\\s\\S]{1,200}client:\\s?)([^,\n]*)([\\s\\S]{1,200}appVersion:\\s?)([^,\n]*)([\\s\\S]{1,200}buildVersion:\\s?)([^,\n]*)",
+               "$1\"android\"$3window._[\"appVersion\"]$5window._[\"buildVersion\"]"
+          ]
           [
                "(var\\s*[a-z]*\\s*=\\s*this,\n*\\s*[a-z]*\\s=\\s*window\\.dofus\\.connectionManager;\n\\s*i.on\\(\"ServersListMessage\",)",
                "window.d = this; \n $1"
