@@ -20,7 +20,7 @@
           [
                "(language:\\s?window\\.Config\\s?\\?[\\s\\S]{1,200}client:\\s?)([^,\n]*)([\\s\\S]{1,200}appVersion:\\s?)([^,\n]*)([\\s\\S]{1,200}buildVersion:\\s?)([^,\n]*)",
                "$1\"android\"$3window._[\"appVersion\"]$5window._[\"buildVersion\"]"
-          ]
+          ],
           [
                "(var\\s*[a-z]*\\s*=\\s*this,\n*\\s*[a-z]*\\s=\\s*window\\.dofus\\.connectionManager;\n\\s*i.on\\(\"ServersListMessage\",)",
                "window.d = this; \n $1"
