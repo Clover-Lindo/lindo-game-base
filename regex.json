@@ -26,10 +26,6 @@
                "var _scm_ = d({address: a,port: r,id: e}); for (var i in window._) {_scm_[i] = window._[i]};this.send(\"connecting\", _scm_);$2"
           ],
           [
-               "window\\.buildVersion.*=.*\"\\d*\\.\\d*\\.\\d*\",",
-               ""
-          ],
-          [
                "(var\\s*[a-z]*\\s*=\\s*this,\n*\\s*[a-z]*\\s=\\s*window\\.dofus\\.connectionManager;\n\\s*i.on\\(\"ServersListMessage\",)",
                "window.d = this; \n $1"
           ],
