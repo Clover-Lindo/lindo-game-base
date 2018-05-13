@@ -2,7 +2,7 @@
      "build/script.js":
      [
           [
-               "/cdvfile\\:\\/\\/localhost\\/persistent\\/data\\/assets/",
+               "cdvfile://localhost/persistent/data/assets",
                "assets"
           ],
           [
@@ -10,42 +10,42 @@
                "null"
           ],
           [
-               "/(overrideConsole.=.function\\(\\) {)([^])*(},._.logUncaughtExceptions)/g",
+               "(overrideConsole.=.function\\(\\) {)([^])*(},._.logUncaughtExceptions)",
                "$1$3"
           ],
           [
-               "/(logUncaughtExceptions.=.function\\(.*\\).{)([^])*(},.*\\.exports.*=.*_\n},.*function\\(e,.*t,.*i\\))/g",
+               "(logUncaughtExceptions.=.function\\(.*\\).{)([^])*(},.*\\.exports.*=.*_\n},.*function\\(e,.*t,.*i\\))",
                "$1$3"
           ],
           [
-               "/this\\.send\\(.*, d\\(\"login\"\\)\\)/g",
+               "this\\.send\\(.*, d\\(\"login\"\\)\\)",
                "var _scm_ = d(\"login\"); for (var i in window._){ _scm_[i] = window._[i]}; this.send(\"connecting\", _scm_);"
           ],
           [
-               "/(this\\.send\\(.*,.d\\({\n.*\n.*\n.*\n.*\n.*)(}\\),.*\\(\"serverDisconnecting\")/g",
+               "(this\\.send\\(.*,.d\\({\n.*\n.*\n.*\n.*\n.*)(}\\),.*\\(\"serverDisconnecting\")",
                "var _scm_ = d({address: a,port: r,id: e}); for (var i in window._) {_scm_[i] = window._[i]};this.send(\"connecting\", _scm_);$2"
           ],
           [
-               "/window\\.buildVersion.*=.*\"\\d*\\.\\d*\\.\\d*\",/g",
+               "window\\.buildVersion.*=.*\"\\d*\\.\\d*\\.\\d*\",",
                ""
           ],
           [
-               "/(var\\s*[a-z]*\\s*=\\s*this,\n*\\s*[a-z]*\\s=\\s*window\\.dofus\\.connectionManager;\n\\s*i.on\\(\"ServersListMessage\",)/g",
+               "(var\\s*[a-z]*\\s*=\\s*this,\n*\\s*[a-z]*\\s=\\s*window\\.dofus\\.connectionManager;\n\\s*i.on\\(\"ServersListMessage\",)",
                "window.d = this; \n $1"
           ],
           [
-               "/([a-z]\\([a-z],\\s*[a-z]\\),\\s*[a-z]\\.exports\\s*=\\s*n,\\s*n\\.prototype\\._addFightModeToolTip\\s*=\\s*function\\([a-z],\\s*[a-z],\\s*[a-z]\\)\\s*{)/g",
+               "([a-z]\\([a-z],\\s*[a-z]\\),\\s*[a-z]\\.exports\\s*=\\s*n,\\s*n\\.prototype\\._addFightModeToolTip\\s*=\\s*function\\([a-z],\\s*[a-z],\\s*[a-z]\\)\\s*{)",
                "window.CharacterDisplay = c;\n\t$1"
           ],
           [
-               "/(, window\\.fetch\\(.+\\/logger)/g",
+               "(, window\\.fetch\\(.+/logger)",
                "; top.console.log(n); return null $1"
           ]
      ],
 
      "build/styles-native.css": [
           [
-               "/cdvfile\\:\\/\\/localhost\\/persistent\\/data\\/assets/",
+               "cdvfile://localhost/persistent/data/assets",
                "assets"
           ]
      ]
