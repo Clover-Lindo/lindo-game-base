@@ -10,12 +10,12 @@
                "null"
           ],
           [
-               "(\\w{1,2}\\.overrideConsole\\s?=\\s?function\\(\\)\\s?{)",
-               "!1&&$1"
+               "(\\w{1,2}\\.overrideConsole\\s?=)\\s?(function\\(\\))",
+               "$1 function() {} !1 && $2"
           ],
           [
-               "(\\w{1,2}\\.logUncaughtExceptions\\s?=\\s?function\\(.*\\)\\s?{)",
-               "!1&&$1"
+               "(\\w{1,2}\\.logUncaughtExceptions\\s?=)\\s?(function\\(\\))",
+               "$1 function() {} !1 && $2"
           ],
           [
                "(language:\\s?window\\.Config\\s?\\?[\\s\\S]{1,200}client:\\s?)([^,\n]*)([\\s\\S]{1,200}appVersion:\\s?)([^,\n]*)([\\s\\S]{1,200}buildVersion:\\s?)([^,\n]*)",
