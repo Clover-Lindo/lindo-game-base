@@ -3,7 +3,7 @@
      [
           [
                "cdvfile://localhost/persistent/data/assets",
-               "assets"
+               "../assets"
           ],
           [
                "window\\.Config\\.analytics",
@@ -38,7 +38,7 @@
      "build/styles-native.css": [
           [
                "cdvfile://localhost/persistent/data/assets",
-               "assets"
+               "../assets"
           ]
      ]
      
