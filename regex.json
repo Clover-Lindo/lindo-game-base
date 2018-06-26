@@ -32,6 +32,10 @@
           [
                "(, window\\.fetch\\(.+/logger)",
                "; top.console.log(n); return null $1"
+          ],
+          [
+               "(\\w{1,2}\\.getCurrentDrawerSize\\(\\)\\s?>=\\s?\\w{1,2}\\.getCurrentContentSize\\(\\))",
+               "// $1"
           ]
      ],
 
