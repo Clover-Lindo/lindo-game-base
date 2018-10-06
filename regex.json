@@ -38,7 +38,7 @@
                "window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog(n); $1"
           ],
           [
-               "()}\\), \\w\\.on\\(\\\"data\\\", function\\(\\w\\) {)",
+               "(}\\), \\w\\.on\\(\\\"data\\\", function\\(\\w\\) {)",
                "$1 window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog(n);"
           ]
      ],
