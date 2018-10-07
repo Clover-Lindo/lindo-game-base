@@ -34,12 +34,12 @@
                "; top.console.log(n); return null $1"
           ],
           [
-               "(\\w\\.write\\(\\w\\), \\w\\.emit\\(\\\"send\\\", {)",
-               "window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog(n); $1"
+               "(var (\\w) = {\\s+call: \\w,\\s+data: \\w\\s+};)",
+               "$1 window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog($2);"
           ],
           [
-               "(}\\), \\w\\.on\\(\\\"data\\\", function\\(\\w\\) {)",
-               "$1 window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog(n);"
+               "(}\\), \\w\\.on\\(\\\"data\\\", function\\((\\w)\\) {)",
+               "$1 window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog($2);"
           ]
      ],
 
