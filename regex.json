@@ -26,8 +26,8 @@
                "window.d = this; \n $1"
           ],
           [
-               "([a-z]\\([a-z],\\s*[a-z]\\),\\s*[a-z]\\.exports\\s*=\\s*n,\\s*n\\.prototype\\._addFightModeToolTip\\s*=\\s*function\\([a-z],\\s*[a-z],\\s*[a-z]\\)\\s*{)",
-               "window.CharacterDisplay = l;\n\t$1"
+               "(\\w{1,2}\\.exports\\s?=\\s?(\\w{1,2}),\\s?)(\\w{1,2}\\.prototype\\.setLook)",
+               "$1window.CharacterDisplay = $2, $3"
           ],
           [
                "(, window\\.fetch\\(.+/logger)",
