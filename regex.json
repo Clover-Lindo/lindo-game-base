@@ -27,7 +27,7 @@
           ],
           [
                "([a-z]\\([a-z],\\s*[a-z]\\),\\s*[a-z]\\.exports\\s*=\\s*n,\\s*n\\.prototype\\._addFightModeToolTip\\s*=\\s*function\\([a-z],\\s*[a-z],\\s*[a-z]\\)\\s*{)",
-               "window.CharacterDisplay = c;\n\t$1"
+               "window.CharacterDisplay = l;\n\t$1"
           ],
           [
                "(, window\\.fetch\\(.+/logger)",
