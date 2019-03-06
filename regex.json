@@ -42,8 +42,8 @@
                "$1 window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog($2);"
           ],
           [
-               "(MAX_ZOOM_MAP\\s?=\\s?)(\\d*(\\.\\d+)?)",
-               "$13"
+               "Math\\.min\\(Math\\.max\\((\\w),\\s?(\\w)\\),\\s?this\\.maxZoom\\)",
+               "Math.max($1, $2)"
           ]
      ],
 
