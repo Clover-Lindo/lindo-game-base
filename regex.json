@@ -40,6 +40,10 @@
           [
                "(}\\), \\w\\.on\\(\\\"data\\\", function\\((\\w)\\) {)",
                "$1 window.top.FileLoggerLib && window.top.FileLoggerLib.writeLindoLog($2);"
+          ],
+          [
+               "(MAX_ZOOM_MAP\\s?=\\s?)(\\d*(\\.\\d+)?)",
+               "$13"
           ]
      ],
 
