@@ -44,10 +44,6 @@
           [
                "Math\\.min\\(Math\\.max\\((\\w),\\s?(\\w)\\),\\s?this\\.maxZoom\\)",
                "Math.max($1, $2)"
-          ],
-          [
-               "(removeAllCarryStatus\\(\\w\\),)\\s?(window\\.gui\\.fightManager\\.getFighter\\(window\\.actorManager\\.userActor\\.actorId\\))",
-               "$1 !window.gui.playerData.isSpectator && $2"
           ]
      ],
 
