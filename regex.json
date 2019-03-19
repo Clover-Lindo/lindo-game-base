@@ -44,6 +44,10 @@
           [
                "Math\\.min\\(Math\\.max\\((\\w),\\s?(\\w)\\),\\s?this\\.maxZoom\\)",
                "Math.max($1, $2)"
+          ],
+          [
+               "=\\s?\\w\\.viewport(Width|Height)\\s?\\|\\|",
+               "="
           ]
      ],
 
