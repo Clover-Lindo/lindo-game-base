@@ -63,7 +63,7 @@
         
         if (window.top.platform == "darwin") {
             (function() {
-                var requestAnimationFrame = function(callback) {
+                window.requestAnimationFrame = function(callback) {
                     var self = requestAnimationFrame;
                     self.queue.push(callback);
                     if (!self.timeout) {
