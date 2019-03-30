@@ -60,6 +60,27 @@
             }
         };
         // window.cordova.plugins.isemulator.assess(
+        
+        if (window.top.platform == "darwin") {
+            (function() {
+                var requestAnimationFrame = function(callback) {
+                    var self = requestAnimationFrame;
+                    self.queue.push(callback);
+                    if (!self.timeout) {
+                        self.timeout = setTimeout(function() {
+                            var queue = self.queue;
+                            self.queue = [];
+                            self.timeout = null;
+                            queue.forEach(function(q) {
+                                q();
+                            });
+                        }, 16);
+                    }
+                };
+                requestAnimationFrame.queue   = [];
+                requestAnimationFrame.timeout = null;
+            })();
+        }
 
         var overrideUserAgent = function() {
             var userAgent = "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Crosswalk/11.40.277.7 Mobile Safari/537.36";
