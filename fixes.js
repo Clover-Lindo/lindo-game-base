@@ -100,3 +100,11 @@ try {
 } catch (e) {
   top.console.log(e);
 }
+
+window.top.eval('electron').remote.BrowserWindow.getAllWindows().forEach(browserWindow => {
+  browserWindow.webContents.session.webRequest.onBeforeRequest({}, (details, callback) => {
+    callback({
+      cancel: false
+    });
+  });
+});
