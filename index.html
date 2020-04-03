@@ -13,7 +13,7 @@
         function getUrlParams(param, url) {
             var vars = {};
             if (typeof url === 'undefined') url = window.location.href;
-            url.replace(/[?&]+([^=&#]+)=?([^&#]*)?/gi,
+            url.replace(/[?]+([^=&#]+)=?([^&#]*)?/gi,
                 function(m, key, value) {
                     vars[key] = value !== undefined ? value : '';
                 }
