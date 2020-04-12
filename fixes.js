@@ -102,7 +102,15 @@ try {
 }
 
 window.top.eval('electron').remote.BrowserWindow.getAllWindows().forEach(browserWindow => {
-  browserWindow.webContents.session.webRequest.onBeforeRequest({}, (details, callback) => {
+  let options = { urls: ['https://haapi.ankama.com/json/Ankama/v2/Api/CreateApiKey'] }
+
+  browserWindow.webContents.session.webRequest.onBeforeRequest(options, (details, callback) => {
+    callback({
+      cancel: false
+    });
+  });
+
+  browserWindow.webContents.session.webRequest.onBeforeSendHeaders(options, (details, callback) => {
     callback({
       cancel: false
     });
