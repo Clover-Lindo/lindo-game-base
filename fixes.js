@@ -115,4 +115,10 @@ window.top.eval('electron').remote.BrowserWindow.getAllWindows().forEach(browser
       cancel: false
     });
   });
+
+  browserWindow.webContents.session.webRequest.onCompleted(options, (details, callback) => {
+    callback({
+      cancel: false
+    });
+  });
 });
