@@ -100,25 +100,3 @@ try {
 } catch (e) {
   top.console.log(e);
 }
-
-window.top.eval('electron').remote.BrowserWindow.getAllWindows().forEach(browserWindow => {
-  let options = { urls: ['https://haapi.ankama.com/json/Ankama/v2/Api/CreateApiKey'] }
-
-  browserWindow.webContents.session.webRequest.onBeforeRequest(options, (details, callback) => {
-    callback({
-      cancel: false
-    });
-  });
-
-  browserWindow.webContents.session.webRequest.onBeforeSendHeaders(options, (details, callback) => {
-    callback({
-      cancel: false
-    });
-  });
-
-  browserWindow.webContents.session.webRequest.onCompleted(options, (details, callback) => {
-    callback({
-      cancel: false
-    });
-  });
-});
