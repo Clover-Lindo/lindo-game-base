@@ -100,3 +100,68 @@ try {
 } catch (e) {
   top.console.log(e);
 }
+
+
+
+/* New website notification */
+
+(async function () {
+
+  // Lindo <= 2.5.2 does not have lindoVersion
+  if (!window.top.lindoVersion) {
+    const lastAsked = window.localStorage.getItem('lindo-update-popup');
+    if (!lastAsked || Date.now() > parseInt(lastAsked) + 1000 * 60 * 60 * 24 * 7) { // 1 week
+      window.localStorage.setItem('lindo-update-popup', Date.now())
+      const texts = {
+        fr: {
+          title: `Notification de Lindo`,
+          message1: `Salut ! Désolé pour l'intrusion.`,
+          message2: `Le site officiel de Lindo a changé d'adresse. On ne pourra plus te prévenir en cas de nouvelle mise à jour avec la version sur laquelle tu joues. Tu peux corriger ça en téléchargeant la dernière version depuis notre nouvelle adresse :`
+        },
+        en: {
+          title: `Notification from Lindo`,
+          message1: `Hi! Sorry for the intrusion.`,
+          message2: `Lindo official website address has changed. We will no longer be able to notify you about upcoming releases of Lindo with the version you're currently playing. You can fix this by downloading the latest version from our new address:`
+        },
+        es: {
+          title: `Notificación de Lindo`,
+          message1: `¡Hola! Perdón por la intrusión.`,
+          message2: `La dirección del sitio web oficial de Lindo ha cambiado. Ya no podremos notificarle sobre los próximos lanzamientos de Lindo con la versión en la que está jugando actualmente. Puede solucionar este problema descargando la última versión desde nuestra nueva dirección:`
+        }
+      }
+
+      const languagesInitialized = new Promise(resolve => {
+        const interval = setInterval(() => {
+          if (window.Config && window.Config.language) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, 1000);
+      });
+
+      const lindoLogoLoaded = new Promise(resolve => {
+        const lindoLogo = new Image();
+        lindoLogo.addEventListener('load', resolve);
+        lindoLogo.src = "https://lindo-app.com/icon.png";
+      });
+
+      await Promise.all([
+        languagesInitialized,
+        lindoLogoLoaded
+      ]);
+
+      const translatedTexts = texts[window.Config.language] || texts['en'];
+
+      window.gui.openSimplePopup(`
+        <div>
+          ${translatedTexts['message1']}<br />
+          ${translatedTexts['message2']}<br />
+          <a target="_blank" href="https://lindo-app.com" style="text-align: center; font-size: 1.2em; display: inline-block; width: 100%; margin-top: 0.4em; text-decoration: none;">
+            <img src="https://lindo-app.com/icon.png" style="height: 1.2em; display: inline-block; vertical-align: middle;"/>
+            <span style="vertical-align: middle;">lindo-app.com</span>
+          </a>
+        </div>
+      `, translatedTexts['title']);
+    }
+  }
+})();
