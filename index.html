@@ -4,12 +4,10 @@
     <script>
 
         // Touch fix
-
         window.ontouchstart = function(e) {};
 
 
         // Init
-
         function getUrlParams(param, url) {
             var vars = {};
             if (typeof url === 'undefined') url = window.location.href;
@@ -169,11 +167,23 @@
 
 <!-- Game -->
 <script>
-  window._ = {
-      appVersion: window.appVersion,
-      buildVersion: window.buildVersion,
-      client: "android"
-  };
-
-  if (!getUrlParams('delayed')) initDofus(null, true);
+    window._ = {
+        appVersion: window.appVersion,
+        buildVersion: window.buildVersion,
+        client: "android"
+    };
+    
+    
+    // prevent logger who send error (with lindo path) to ankama
+    const orgn = window.fetch.bind(window);
+    window.fetch = (...args) => {
+        const endpoint = args[0];
+        if (endpoint.endsWith("/logger")) {
+            return;
+        }
+        return orgn(...args);
+    };
+    
+    if (!getUrlParams('delayed')) initDofus(null, true);
 </script>
+
