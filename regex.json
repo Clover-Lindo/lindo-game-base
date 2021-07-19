@@ -56,6 +56,10 @@
           [
                "(_\\.initDBFallback\\(\\w{1,2}\\.getDataMap,\\s?\\w{1,2}\\))",
                "(new window.Primus('https://proxyconnection.touch.dofus.com?STICKER='+window.Config.sessionId)).on('open',()=>{$1})"
+          ],
+          [
+               "new \\w\\(document\\.getElementsByClassName\\(\"dofusBody\"\\)\\[0\\]\\)",
+               "new r(document.getElementById(\"dofusBody\"))"
           ]
      ],
 
