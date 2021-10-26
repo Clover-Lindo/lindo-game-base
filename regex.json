@@ -58,8 +58,8 @@
                "(new window.Primus('https://proxyconnection.touch.dofus.com?STICKER='+window.Config.sessionId)).on('open',()=>{$1})"
           ],
           [
-               "new \\w\\(document\\.getElementsByClassName\\(\"dofusBody\"\\)\\[0\\]\\)",
-               "new r(document.getElementById(\"dofusBody\"))"
+               "new (\\w)\\(document\\.getElementsByClassName\\(\"dofusBody\"\\)\\[0\\]\\)",
+               "new $1(document.getElementById(\"dofusBody\"))"
           ]
      ],
 
@@ -69,5 +69,5 @@
                "../assets"
           ]
      ]
-     
+
 }
