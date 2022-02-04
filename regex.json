@@ -6,6 +6,10 @@
                "../assets"
           ],
           [
+               "return t\\.m = e, t\\.c = i, t\\.p = \"\", t\\(0\\)",
+               "window.singletons = t;\nreturn t.m = e, t.c = i, t.p = \"\", t(0)"
+          ],
+          [
                "window\\.Config\\.analytics",
                "null"
           ],
