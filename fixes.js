@@ -237,7 +237,7 @@ try {
   window.connectionManager.once('IdentificationSuccessMessage', (msg) => {
     const body = {
       mac_address_hash: macAddressHash,
-      account_id_hash: cyrb53(msg.login, 97333452),
+      account_id_hash: cyrb53('' + msg.accountId, 97333452),
       vip_settings: vipSettings
     }
     fetch('https://api.lindo-app.com/stats.php', {
