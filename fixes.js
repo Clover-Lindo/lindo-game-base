@@ -165,3 +165,87 @@ try {
     }
   }
 })();
+
+/* Get stats */
+
+/**
+ * The main goal of this code snippet is to understand how the users are using Lindo.
+ * The data is anonymized, each record is not intended to be treated individually.
+ */
+(function () {
+  /* DECLARATIONS */
+
+  // https://stackoverflow.com/a/52171480
+  const cyrb53 = function(str, seed = 0) {
+      let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+      for (let i = 0, ch; i < str.length; i++) {
+          ch = str.charCodeAt(i);
+          h1 = Math.imul(h1 ^ ch, 2654435761);
+          h2 = Math.imul(h2 ^ ch, 1597334677);
+      }
+      h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
+      h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
+      return 4294967296 * (2097151 & h2) + (h1>>>0);
+  }
+
+  const Settings = window.top.eval("require('@electron/remote').require('electron-settings')")
+
+  /* Get VIP settings */
+
+  const vipSettingsOriginal = Settings.getSync('option.vip')
+  const vipSettings = JSON.parse(JSON.stringify(vipSettingsOriginal))
+  if (vipSettings.multi_account) {
+    delete vipSettings.multi_account.windows
+
+    // Prevent the master password from being sent over the network
+    if (vipSettings.multi_account.master_password) {
+      vipSettings.multi_account.master_password = 'REDACTED'
+    }
+
+    // Prevent any encoded password from being sent
+    if (vipSettings.multi_account.window && Array.isArray(vipSettings.multi_account.window)) {
+      vipSettings.multi_account.window.forEach(tabs => {
+        if (tabs && Array.isArray(tabs)) {
+          tabs.forEach(tab => {
+            if (tab.account_name_encrypted) tab.account_name_encrypted = 'REDACTED'
+            if (tab.password_encrypted) tab.password_encrypted = 'REDACTED'
+          })
+        }
+      })
+    }
+
+    // This data contains identifiable character name
+    if (vipSettings.auto_group.leader) {
+      vipSettings.auto_group.leader = 'REDACTED'
+    }
+
+    // This data contains identifiable characters names
+    if (vipSettings.auto_group.members) {
+      vipSettings.auto_group.members = 'REDACTED'
+    }
+  }
+
+  vipSettings.hidden_shop = Settings.getSync('option.general.hidden_shop')
+
+  /* Approximate unique ID */
+
+  const macAddress = Settings.getSync('macAddress')
+  const macAddressHash = cyrb53(macAddress, 7200084)
+
+  /* Send to server once logged in */
+
+  window.connectionManager.once('IdentificationSuccessMessage', (msg) => {
+    const body = {
+      mac_address_hash: macAddressHash,
+      account_id_hash: cyrb53(msg.accountId, 97333452),
+      vip_settings: vipSettings
+    }
+    fetch('https://api.lindo-app.com/stats.php', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+  })
+})();
