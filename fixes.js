@@ -300,4 +300,38 @@ try {
     sendPopup(texts, link)
     return
   }
+
+  const lastAskedMatrix = window.localStorage.getItem('lindo-matrix-popup');
+  if (!lastAskedMatrix || Date.now() > parseInt(lastAskedMatrix) + 1000 * 60 * 60 * 24 * 7) { // 1 week
+    window.localStorage.setItem('lindo-matrix-popup', Date.now())
+
+    const texts = {
+      fr: {
+        title: `Notification de Lindo`,
+        messages: [
+          `Un nouveau serveur de discussion a été mis en place pour remplacer Discord ! Retrouve nous vite sur le serveur Matrix de Lindo<br />`
+        ]
+      },
+      en: {
+        title: `Notification from Lindo`,
+        messages: [
+          `A new chat server has been set up to replace Discord! Find us quickly on Lindo's Matrix server.<br />`
+        ]
+      },
+      es: {
+        title: `Notificación de Lindo`,
+        messages: [
+          `¡Se ha configurado un nuevo servidor de chat para reemplazar a Discord! Encuéntrenos rápidamente en el servidor Matrix de Lindo.<br /> `
+        ]
+      }
+    }
+
+    const link = {
+      url: 'https://matrix.to/#/#lindo-official:matrix.org',
+      text: 'Matrix Lindo'
+    }
+
+    sendPopup(texts, link)
+    return
+  }
 })();
