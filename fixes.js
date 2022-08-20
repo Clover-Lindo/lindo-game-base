@@ -262,3 +262,39 @@ try {
     return
   }
 })();
+
+const showV3Update = async ()  => {
+  const lastAskedv3 = window.localStorage.getItem('lindo-v3');
+  if (!lastAskedv3 || Date.now() > parseInt(lastAskedMatrix) + 1000 * 60 * 60 * 24 * 7) { // 1 week
+    window.localStorage.setItem('lindo-v3', Date.now())
+
+    const texts = {
+      fr: {
+        title: `Notification de Lindo`,
+        messages: [
+          `La V2 de Lindo ne sera bientôt plus supporté par l'équipe, téléchargez la nouvelle version de Lindo sur GitHub<br />`
+        ]
+      },
+      en: {
+        title: `Notification from Lindo`,
+        messages: [
+          `Lindo V2 will soon no longer be supported by the team, download the new version of Lindo on GitHub.<br />`
+        ]
+      },
+      es: {
+        title: `Notificación de Lindo`,
+        messages: [
+          `Lindo V2 pronto dejará de ser compatible con el equipo, descargue la nueva versión de Lindo en GitHub.<br /> `
+        ]
+      }
+    }
+
+    const link = {
+      url: 'https://github.com/prixe/lindo/releases/latest',
+      text: 'GitHub Lindo'
+    }
+
+    await sendPopup(texts, link)
+    return
+  }
+} 
