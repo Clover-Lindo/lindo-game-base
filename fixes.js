@@ -263,8 +263,8 @@ async function sendPopup (texts, link) {
 })();
 
 const showV3Update = async ()  => {
-  const lastAskedv3 = window.localStorage.getItem('lindo-v3');
-  if (!lastAskedv3 || Date.now() > parseInt(lastAskedMatrix) + 1000 * 60 * 60 * 24 * 7) { // 1 week
+  const lastAskedV3 = window.localStorage.getItem('lindo-v3');
+  if (!lastAskedV3 || Date.now() > parseInt(lastAskedV3) + 1000 * 60 * 60 * 24) { // 1 day
     window.localStorage.setItem('lindo-v3', Date.now())
 
     const texts = {
