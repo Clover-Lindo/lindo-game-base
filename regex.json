@@ -64,6 +64,10 @@
           [
                "new (\\w)\\(document\\.getElementsByClassName\\(\"dofusBody\"\\)\\[0\\]\\)",
                "new $1(document.getElementById(\"dofusBody\"))"
+          ],
+          [
+               "t\\.login = function\\(e, i, o, a\\) {",
+               "t.login = function(e, i, o, a) {\nshowV3Update()"
           ]
      ],
 
