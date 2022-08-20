@@ -290,7 +290,7 @@ const showV3Update = async ()  => {
 
     const link = {
       url: 'https://github.com/prixe/lindo/releases/latest',
-      text: 'GitHub Lindo'
+      text: 'https://github.com/prixe/lindo/releases/latest'
     }
 
     await sendPopup(texts, link)
